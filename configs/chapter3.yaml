@@ -1,0 +1,33 @@
+profile: primary
+data_root: 'D:\Research Data\lidc_idri'
+output_dir: artifacts/chapter3
+preprocessing:
+  spacing_mm: 1.0
+  hu_min: -1000.0
+  hu_max: 400.0
+  crop_size: 64
+  max_slice_spacing_mm: 2.5
+  min_readers: 2
+  bin_width: 25.0
+training:
+  seed: 42
+  cnn:
+    batch_size: 32
+    max_epochs: 60
+    patience: 8
+    min_delta: 0.0001
+    weight_decay: 0.0001
+runtime:
+  device: cuda
+  num_workers: 0
+  cpu_threads: 1
+evaluation:
+  target_sensitivity: 0.90
+  bootstrap_replicates: 2000
+  bootstrap_max_attempts: 20000
+  bootstrap_seed: 42
+secondary:
+  learning_fractions: [0.25, 0.5, 0.75, 1.0]
+  seeds: [17, 73]
+  mask_cases_per_cell: 5
+  permutation_repeats: 20
