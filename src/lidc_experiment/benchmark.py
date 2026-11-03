@@ -33,7 +33,8 @@ def benchmark_models(root, config):
     from .dataset import _load_scan, _prepare_record
     from .features import build_extractor, extract_arrays
     from .workflow import load_models, read_tables, verify_frozen
-    import pylidc as pl
+    from .compat import load_pylidc
+    pl = load_pylidc()
 
     root = Path(root)
     verify_frozen(root, config)
