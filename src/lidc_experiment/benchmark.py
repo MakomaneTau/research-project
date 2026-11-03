@@ -131,4 +131,7 @@ def benchmark_models(root, config):
                "pipeline_input": "decoded HU CT volume and supplied reader annotation contours",
                "source_decode_table": "includes CT file retrieval, integrity hashing, DICOM/HU decoding and annotation retrieval",
                "human_contouring_included": False})
+    if not (output / "component_measurement.json").exists():
+        from .component_benchmark import benchmark_components
+        benchmark_components(root, config)
     return summary
