@@ -1,6 +1,7 @@
 .venv/
 .build/
 artifacts/
+results_evidence/
 __pycache__/
 *.py[cod]
 .pytest_cache/
