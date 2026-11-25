@@ -6,6 +6,17 @@ radiologist-rated nodule malignancy suspicion**. Expert annotations are supplied
 inputs. This is an internal research comparison, not full-scan detection or
 pathology-confirmed cancer diagnosis.
 
+- [Open the demo](#open-the-demo)
+- [Reproduce the experiment](#reproduce-the-experiment)
+
+## Open the demo
+
+For the Eduvos submission, download the `dissertation-v1-examiner-demo.zip`
+attachment, extract it, and open `prepared_case.html` in your browser. The file
+contains the axial CT crop, supplied consensus contour and four model decisions
+for one validation nodule. It runs offline without Python, a dataset download
+or model training.
+
 ## Recorded experiment
 
 The completed predictive evaluation uses 545 nodules from 368 patients, including
@@ -19,15 +30,22 @@ The CNN's native probabilities are poorly calibrated (Brier score 0.2524).
 All four models fall below the validation sensitivity target on the final test.
 These limitations belong alongside the discrimination results.
 
-Open the [results report](artifacts/chapter3/CHAPTER4_RESULTS.md),
-[interpretation notes](artifacts/chapter3/CHAPTER4_INTERPRETATION.md) and
-[executed notebook](notebooks/chapter3_experiment.ipynb) for the recorded evidence.
-The [prepared-case example](artifacts/chapter3/prepared_case.html) shows a supplied
-contour and the four frozen model decisions for one development nodule.
-Experiment artifacts are retained locally and excluded from Git; source code,
-configuration, environment pins and tests are in this repository.
+The [Chapter 4 results report](docs/CHAPTER4_RESULTS.md) gives the aggregate
+results and uncertainty intervals. The examiner ZIP includes the original
+`training/cv_results.csv` and `training/selection.json`, which record the
+training-only selection of Random Forest. The executed notebook is available
+at the recorded implementation commit.
 
-## Environment
+## Reproduce the experiment
+
+Start from the [recorded implementation commit](https://github.com/MakomaneTau/research-project/tree/92c854a9a69828624bc13a2999b4b8529e31d8de)
+(`dissertation-v1`). It includes the source, configuration, environment lock,
+tests and executed notebook used for the dissertation. Set the LIDC-IDRI data
+location for your machine and follow the environment and workflow below. Use
+the pinned checkout for the tracked-file hashes in the original completion
+manifest.
+
+### Environment
 
 Use an isolated 64-bit Python 3.11 environment. The workstation has an existing
 interpreter at `C:\Users\ponts\AppData\Local\Programs\Python\Python311\python.exe`.
@@ -167,3 +185,9 @@ independence, train-only feature fitting, calibration, metric arithmetic,
 bootstrap multiplicity, reload consistency and four-model integration.
 These tests do not establish predictive performance. Real cohort counts and model
 scores are valid only after their corresponding recorded stages finish.
+
+## Research outputs
+
+- *Comparing Radiomics and Deep Learning for Pulmonary Nodule Suspicion
+  Classification* (A patient-grouped evaluation using LIDC-IDRI CT images).
+  `ITRPA4-34 - Mini Dissertation - Midrand - con-1471898-j4q5.pdf`
